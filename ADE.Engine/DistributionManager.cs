@@ -11,6 +11,8 @@ namespace ADE.Engine
     public class DistributionManager
     {
         Object lockMe = new Object();
+        double TotalExpectedDuration;
+        double TotalStandardDeviation;
         private List<PertVM> pertVMs = new List<PertVM>();
 
         public DistributionManager(List<PertInput> pertInputs)
@@ -20,13 +22,28 @@ namespace ADE.Engine
 
         public double LikelihoodCompleteWithinDays(double expectedNumberOfDays)
         {
-            double TotExpectedDuration = pertVMs.Select(x => x.ExpectedDurationTask).Sum();
-            double TotalStandardDeviation = Math.Sqrt(pertVMs.Select(x => Math.Pow(x.StandardDeviation,2)).Sum());
+           
 
-            double Zvalue = (expectedNumberOfDays - TotExpectedDuration) / TotalStandardDeviation;
+            double Zvalue = (expectedNumberOfDays - TotalExpectedDuration) / TotalStandardDeviation;
             double NormalDistribution = NormalDistributionHelper.NORMSDIST(Zvalue);
 
             return NormalDistribution * 100;
+        }
+
+        public List<ProjectCompletionOdds> GetProjectCompletionOdds()
+        {
+            List<ProjectCompletionOdds> projectCompletionOdds = new List<ProjectCompletionOdds>()
+            {
+                new ProjectCompletionOdds("10%", TotalExpectedDuration - TotalStandardDeviation),
+                new ProjectCompletionOdds("50%", TotalExpectedDuration),
+                new ProjectCompletionOdds("20%", TotalExpectedDuration + TotalStandardDeviation),
+                new ProjectCompletionOdds("10%", TotalExpectedDuration + 2 * TotalStandardDeviation),
+                new ProjectCompletionOdds("5%",  TotalExpectedDuration + 3 * TotalStandardDeviation),
+                new ProjectCompletionOdds("2%", TotalExpectedDuration + 4 * TotalStandardDeviation),
+                new ProjectCompletionOdds("< 1%", TotalExpectedDuration + 5 * TotalStandardDeviation)
+
+            };
+            return projectCompletionOdds;
         }
 
         private void CalculateBetaDistributionAndDeviationItems(List<PertInput> pertInputs)
@@ -38,6 +55,10 @@ namespace ADE.Engine
                     pertVMs.Add(DistributionManagerUtils.CalculateBetaDistributionAndDeviationLineItems(input));
                 }
             });
+            TotalExpectedDuration = pertVMs.Select(x => x.ExpectedDurationTask).Sum();
+            TotalStandardDeviation = Math.Sqrt(pertVMs.Select(x => Math.Pow(x.StandardDeviation, 2)).Sum());
         }
+
+
     }
 }
