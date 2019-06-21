@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ADE.Domain", "ADE.Domain\AD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ADE.xUnitTest", "ADE.xUnitTest\ADE.xUnitTest.csproj", "{5A8D582F-AE23-4736-B32B-D7EF077C5230}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADE.Api", "ADE.Api\ADE.Api.csproj", "{C7C0818F-E910-413B-BA67-DE8A2A47C8CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5A8D582F-AE23-4736-B32B-D7EF077C5230}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A8D582F-AE23-4736-B32B-D7EF077C5230}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A8D582F-AE23-4736-B32B-D7EF077C5230}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7C0818F-E910-413B-BA67-DE8A2A47C8CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7C0818F-E910-413B-BA67-DE8A2A47C8CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7C0818F-E910-413B-BA67-DE8A2A47C8CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7C0818F-E910-413B-BA67-DE8A2A47C8CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
