@@ -24,4 +24,4 @@ Body (application/json):
   	"Pessimistic":12}
 ]`
 
-![screen](/_site/projCompletionApi.png)
+![screen](<https://raw.githubusercontent.com/simonedemuro/AccurateDeveloperTimeEstimation/master/_site/projCompletionApi.png>)
